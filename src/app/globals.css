@@ -2,6 +2,10 @@
 @import "../styles/tokens.css";
 @import "../styles/utilities.css";
 
+html {
+  background: var(--color-bg);
+}
+
 body {
   font-family:
     Pretendard,
@@ -13,5 +17,11 @@ body {
   color: var(--color-text);
   background: var(--color-bg);
   letter-spacing: -0.025em;
+  line-height: 1.5;
   word-break: keep-all;
+}
+
+::selection {
+  color: #fff;
+  background: var(--color-green);
 }

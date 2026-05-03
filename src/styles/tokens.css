@@ -3,23 +3,37 @@
   --color-body: #515751;
   --color-muted: #8a9288;
   --color-line: #e7ebe4;
+  --color-line-strong: #d7ddd4;
 
   --color-bg: #ffffff;
+  --color-bg-subtle: #fcfcf8;
   --color-soft: #f4f8f2;
   --color-warm: #fbfaf4;
+  --color-cream: #f7f3ea;
+  --color-card: #fffdf9;
 
   --color-green: #386a3f;
   --color-green-dark: #203f2a;
   --color-green-soft: #e8f3e7;
+  --color-green-wash: #f1f7ef;
+  --color-olive: #6f7f68;
+  --color-blue-soft: #eef4f7;
+  --color-blue-deep: #466173;
+  --color-peach-soft: #f7ece2;
+  --color-sand: #e8ddcd;
 
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 18px;
   --radius-xl: 24px;
   --radius-2xl: 32px;
+  --radius-pill: 999px;
 
   --shadow-card: 0 18px 54px rgba(34, 47, 36, 0.1);
   --shadow-soft: 0 10px 28px rgba(34, 47, 36, 0.06);
+  --shadow-panel: 0 24px 60px rgba(44, 57, 40, 0.08);
+  --shadow-lift: 0 14px 32px rgba(34, 47, 36, 0.09);
 
   --container-width: 1120px;
+  --section-space: 112px;
 }

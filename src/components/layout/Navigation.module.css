@@ -2,8 +2,8 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(18px);
+  background: rgba(255, 252, 248, 0.9);
+  backdrop-filter: blur(22px);
   border-bottom: 1px solid var(--color-line);
 }
 
@@ -45,6 +45,12 @@
   font-size: 14px;
 }
 
+.menu a {
+  transition:
+    color 180ms ease,
+    opacity 180ms ease;
+}
+
 .menu a:hover {
   color: var(--color-green);
 }
@@ -57,13 +63,21 @@
 .startButton {
   height: 40px;
   border-radius: 999px;
-  padding: 0 16px;
+  padding: 0 18px;
   display: inline-flex;
   align-items: center;
-  background: var(--color-text);
+  background: var(--color-green-dark);
   color: #fff;
   font-size: 14px;
-  box-shadow: 0 10px 24px rgba(23, 26, 23, 0.14);
+  box-shadow: 0 10px 24px rgba(32, 63, 42, 0.16);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.startButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 30px rgba(32, 63, 42, 0.18);
 }
 
 @media (max-width: 760px) {

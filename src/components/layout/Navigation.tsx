@@ -17,8 +17,8 @@ export function Navigation() {
         </nav>
 
         <div className={styles.actions}>
-          <Link href="/market" className={styles.startButton}>
-            기준 만들기
+          <Link href="/#waitlist" className={styles.startButton}>
+            베타 알림 받기
           </Link>
         </div>
       </div>

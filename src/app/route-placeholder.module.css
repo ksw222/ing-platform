@@ -1,5 +1,6 @@
 .page {
-  padding: 72px 0 96px;
+  max-width: 760px;
+  padding: 88px 0 112px;
 }
 
 .title {
