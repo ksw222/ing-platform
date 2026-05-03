@@ -1,24 +1,20 @@
-import { CriteriaDemoSection } from "@/features/landing/components/CriteriaDemoSection";
+import { CriteriaBarSection } from "@/features/landing/components/CriteriaBarSection";
 import { HeroSection } from "@/features/landing/components/HeroSection";
+import { HowItWorksSection } from "@/features/landing/components/HowItWorksSection";
 import { LandingCriteriaProvider } from "@/features/landing/components/LandingCriteriaProvider";
 import { LandingFooter } from "@/features/landing/components/LandingFooter";
-import { PainSection } from "@/features/landing/components/PainSection";
-import { ProductMatchSection } from "@/features/landing/components/ProductMatchSection";
-import { TrustSection } from "@/features/landing/components/TrustSection";
+import { ProductPreviewSection } from "@/features/landing/components/ProductPreviewSection";
 import { WaitlistSection } from "@/features/landing/components/WaitlistSection";
-import { WorkflowSection } from "@/features/landing/components/WorkflowSection";
 
 export default function HomePage() {
   return (
     <main>
       <HeroSection />
-      <PainSection />
       <LandingCriteriaProvider>
-        <CriteriaDemoSection />
-        <ProductMatchSection />
+        <CriteriaBarSection />
+        <ProductPreviewSection />
       </LandingCriteriaProvider>
-      <WorkflowSection />
-      <TrustSection />
+      <HowItWorksSection />
       <WaitlistSection />
       <LandingFooter />
     </main>

@@ -1,10 +1,10 @@
-import styles from "../styles/landing.module.css";
-import { criteriaLabelMap } from "../data/landing-copy";
+import { criteriaLabelMap } from "../data/landing-criteria";
 import type {
   LandingProductMatch,
   LandingProductShape,
   LandingProductTone,
 } from "../data/landing-products";
+import styles from "../styles/landing.module.css";
 
 const toneClassMap: Record<LandingProductTone, string> = {
   sage: styles.toneSage,
@@ -40,15 +40,19 @@ export function LandingProductCard({
   const matchedLabels = product.matchedCriteria.map(
     (criterion) => criteriaLabelMap[criterion],
   );
+  const isCompact = variant === "compact";
+  const visibleTags = isCompact ? product.tags.slice(0, 2) : product.tags;
 
   return (
     <article
       className={`${styles.productCard} ${
-        variant === "compact" ? styles.productCardCompact : ""
+        isCompact ? styles.productCardCompact : ""
       }`}
     >
       <div
-        className={`${styles.productVisual} ${toneClassMap[product.tone]}`}
+        className={`${styles.productVisual} ${toneClassMap[product.tone]} ${
+          isCompact ? styles.productVisualCompact : ""
+        }`}
         role="img"
         aria-label={`${product.brand} ${product.name} 제품 미리보기`}
       >
@@ -57,14 +61,18 @@ export function LandingProductCard({
       </div>
 
       <div className={styles.productBody}>
-        <div className={styles.productTopLine}>
-          <p className={styles.productBrand}>{product.brand}</p>
-          <span className={styles.productScore}>{product.adjustedScore}% 매칭</span>
+        <div className={styles.productMeta}>
+          <div>
+            <p className={styles.productBrand}>{product.brand}</p>
+            <p className={styles.productCategory}>{product.category}</p>
+          </div>
+          <span className={styles.productScore}>{product.adjustedScore}%</span>
         </div>
+
         <h3 className={styles.productName}>{product.name}</h3>
 
         <div className={styles.tagRow}>
-          {product.tags.map((tag) => (
+          {visibleTags.map((tag) => (
             <span key={`${product.id}-${tag}`} className={styles.tag}>
               {tag}
             </span>
@@ -72,11 +80,13 @@ export function LandingProductCard({
         </div>
 
         <p className={styles.reasonText}>{product.reason}</p>
-        <p className={styles.matchedText}>
-          {matchedLabels.length > 0
-            ? `현재 기준: ${matchedLabels.join(" · ")}`
-            : "전체 예시 제품 보기 상태"}
-        </p>
+        {!isCompact ? (
+          <p className={styles.matchedText}>
+            {matchedLabels.length > 0
+              ? `적용 기준: ${matchedLabels.join(" · ")}`
+              : "현재는 전체 예시 제품을 보고 있습니다."}
+          </p>
+        ) : null}
       </div>
     </article>
   );

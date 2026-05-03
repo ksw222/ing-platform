@@ -3,6 +3,12 @@
   margin-inline: auto;
 }
 
+@media (max-width: 639px) {
+  .container {
+    width: min(var(--container-width), calc(100% - 28px));
+  }
+}
+
 .visuallyHidden {
   position: absolute;
   width: 1px;

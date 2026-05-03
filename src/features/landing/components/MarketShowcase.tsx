@@ -1,10 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import {
   criteriaLabelMap,
   defaultLandingCriteria,
-} from "../data/landing-copy";
+} from "../data/landing-criteria";
 import {
   getMatchedProducts,
   landingProducts,
@@ -40,11 +41,10 @@ export function MarketShowcase() {
       <section className={styles.pageSection}>
         <div className="container">
           <div className={styles.marketHeader}>
-            <span className={styles.sectionEyebrow}>Market MVP</span>
+            <span className={styles.sectionEyebrow}>제품 매칭 MVP</span>
             <h1 className={styles.sectionTitle}>내 기준에 맞는 제품 보기</h1>
-            <p className={styles.sectionDescription}>
-              랜딩에서 보던 예시 데이터를 조금 더 넓게 펼쳐본 MVP 화면입니다.
-              기준을 바꾸면 어떤 제품이 먼저 남는지 바로 확인할 수 있습니다.
+            <p className={styles.sectionBody}>
+              아직 MVP 데모이며, 기준에 따라 제품을 정리하는 흐름을 보여줍니다.
             </p>
           </div>
 
@@ -53,20 +53,14 @@ export function MarketShowcase() {
             onToggle={toggleCriterion}
           />
 
-          <div className={styles.filterBar}>
-            <div className={styles.criteriaPillRow}>
-              {selectedLabels.length > 0 ? (
-                selectedLabels.map((label) => (
-                  <span key={label} className={styles.criteriaPill}>
-                    {label}
-                  </span>
-                ))
-              ) : (
-                <span className={styles.criteriaPill}>전체 예시 제품 보기</span>
-              )}
-            </div>
-            <p className={styles.filterMeta}>
+          <div className={styles.marketSummary}>
+            <p className={styles.productCount}>
               예시 제품 {filteredProducts.length}개 표시
+            </p>
+            <p className={styles.productSummaryText}>
+              {selectedLabels.length > 0
+                ? `선택 기준: ${selectedLabels.join(" · ")}`
+                : "현재는 전체 예시 제품을 보고 있습니다."}
             </p>
           </div>
 
@@ -76,10 +70,30 @@ export function MarketShowcase() {
             ))}
           </div>
 
-          <p className={styles.noteLine}>
-            매칭 점수는 선택한 기준에 대한 참고 결과입니다. 제품 안전성이나
-            효능을 보장하지 않으며, 현재 화면은 예시 제품 기반 MVP 데모입니다.
+          <p className={styles.productNote}>
+            현재 제품 정보는 랜딩 시연용 예시이며, 제품 안전성이나 효능을
+            보장하지 않습니다.
           </p>
+
+          <div className={styles.marketCta}>
+            <div>
+              <h2 className={styles.marketCtaTitle}>
+                매번 같은 성분표를 다시 보고 있다면,
+                <br />
+                기준부터 저장해보세요.
+              </h2>
+              <p className={styles.marketCtaBody}>
+                아직 완성된 서비스는 아니지만, 어떤 기준이 먼저 필요한지부터
+                모으고 있습니다.
+              </p>
+            </div>
+
+            <div className={styles.marketActions}>
+              <Link href="/#waitlist" className={styles.primaryAction}>
+                내 기준 저장 알림 받기
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </main>

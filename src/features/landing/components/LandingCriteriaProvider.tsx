@@ -1,7 +1,10 @@
 "use client";
 
 import { createContext, useContext, useMemo, useState } from "react";
-import { defaultLandingCriteria, landingCriteria } from "../data/landing-copy";
+import {
+  defaultLandingCriteria,
+  landingCriteria,
+} from "../data/landing-criteria";
 import {
   getMatchedProducts,
   landingProducts,

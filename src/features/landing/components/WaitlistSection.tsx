@@ -1,13 +1,25 @@
 "use client";
 
-import { FormEvent, useState } from "react";
-import {
-  waitlistInterestOptions,
-  waitlistProofPoints,
-} from "../data/landing-copy";
+import Link from "next/link";
+import type { FormEvent } from "react";
+import { useState } from "react";
+import { waitlistInterestOptions } from "../data/landing-criteria";
 import styles from "../styles/landing.module.css";
 
 type WaitlistInterestValue = (typeof waitlistInterestOptions)[number]["value"];
+
+type WaitlistSubmissionPayload = {
+  email: string;
+  interest: WaitlistInterestValue;
+  note: string;
+  requestedAt: string;
+  source: "landing-waitlist";
+  page: "/";
+  formVersion: "mvp-responsive-v1";
+  externalFormEnabled: boolean;
+};
+
+const waitlistFormUrl = process.env.NEXT_PUBLIC_WAITLIST_FORM_URL;
 
 export function WaitlistSection() {
   const [email, setEmail] = useState("");
@@ -20,12 +32,18 @@ export function WaitlistSection() {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    console.log("[ING waitlist submit]", {
+    const payload: WaitlistSubmissionPayload = {
       email,
       interest,
       note,
-      submittedAt: new Date().toISOString(),
-    });
+      requestedAt: new Date().toISOString(),
+      source: "landing-waitlist",
+      page: "/",
+      formVersion: "mvp-responsive-v1",
+      externalFormEnabled: Boolean(waitlistFormUrl),
+    };
+
+    console.log("[ING waitlist submit]", payload);
 
     setSubmitted(true);
     setEmail("");
@@ -38,26 +56,18 @@ export function WaitlistSection() {
       id="waitlist"
       className={`${styles.pageSection} ${styles.waitlistSection}`}
     >
-      <div className={`container ${styles.waitlistGrid}`}>
-        <div className={styles.waitlistLead}>
-          <span className={styles.sectionEyebrow}>베타 알림 받기</span>
-          <h2 className={styles.sectionTitle}>
-            매번 다시 검색하지 않도록,
-            <br />
-            내 기준을 저장해두세요.
-          </h2>
-          <p className={styles.sectionDescription}>
-            ING는 현재 베타 MVP입니다. 출시 알림과 테스트 초대를 받고 싶다면
-            이메일을 남겨주세요.
+      <div className={`container ${styles.waitlistWrap}`}>
+        <div className={styles.waitlistIntro}>
+          <span className={styles.sectionEyebrow}>베타 알림</span>
+          <h2 className={styles.sectionTitle}>베타 오픈 때 알려드릴게요.</h2>
+          <p className={styles.sectionBody}>
+            아직 완성된 서비스는 아니지만, 실제로 필요한 기준부터 먼저 만들고
+            있습니다. 써보고 싶은 기준이 있다면 남겨주세요.
           </p>
-
-          <ul className={styles.proofList}>
-            {waitlistProofPoints.map((item) => (
-              <li key={item} className={styles.proofItem}>
-                {item}
-              </li>
-            ))}
-          </ul>
+          <p className={styles.waitlistSupport}>
+            매번 같은 성분표를 다시 찾고 있다면, 어떤 기준이 가장 먼저
+            필요했는지도 함께 적어주세요.
+          </p>
         </div>
 
         <div className={styles.waitlistCard}>
@@ -104,30 +114,44 @@ export function WaitlistSection() {
 
             <div className={styles.field}>
               <label htmlFor="waitlist-note" className={styles.label}>
-                의견
+                의견 (선택)
               </label>
               <textarea
                 id="waitlist-note"
                 className={styles.textarea}
                 rows={5}
-                placeholder="지금 제품을 고를 때 가장 번거로운 점이 있다면 적어주세요."
+                placeholder="자주 확인하는 성분이나 먼저 써보고 싶은 흐름이 있다면 적어주세요."
                 value={note}
                 onChange={(event) => setNote(event.target.value)}
               />
             </div>
 
-            <button type="submit" className={styles.submitButton}>
-              출시되면 먼저 써보기
-            </button>
+            <div className={styles.submitRow}>
+              <button type="submit" className={styles.submitButton}>
+                베타 알림 받기
+              </button>
 
-            <p className={styles.subtleText}>
-              지금은 로컬 상태로만 접수 메시지를 보여주는 MVP 데모 단계입니다.
+              {waitlistFormUrl ? (
+                <Link
+                  href={waitlistFormUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={styles.altLink}
+                >
+                  Google Form으로 30초 신청하기
+                </Link>
+              ) : null}
+            </div>
+
+            <p className={styles.helperText}>
+              현재는 로컬 폼으로 흐름만 검증 중이며, 실제 저장 연동은 다음
+              단계에서 붙일 예정입니다.
             </p>
 
             {submitted ? (
               <p role="status" className={styles.successMessage}>
-                신청이 접수되었습니다. 현재는 MVP 데모이며, 실제 저장 연동은 다음
-                단계에서 연결됩니다.
+                신청이 접수되었습니다. 남겨주신 기준은 베타 기능 우선순위에
+                참고하겠습니다.
               </p>
             ) : null}
           </form>

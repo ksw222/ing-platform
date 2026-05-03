@@ -18,7 +18,13 @@ body {
   background: var(--color-bg);
   letter-spacing: -0.025em;
   line-height: 1.5;
+  min-height: 100vh;
   word-break: keep-all;
+}
+
+:focus-visible {
+  outline: 2px solid rgba(56, 106, 63, 0.35);
+  outline-offset: 2px;
 }
 
 ::selection {

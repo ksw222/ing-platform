@@ -1,6 +1,6 @@
-import styles from "../styles/landing.module.css";
-import { landingCriteria } from "../data/landing-copy";
+import { landingCriteria } from "../data/landing-criteria";
 import type { LandingCriterionId } from "../data/landing-products";
+import styles from "../styles/landing.module.css";
 
 type CriteriaChipGroupProps = {
   selectedCriteria: LandingCriterionId[];
@@ -21,12 +21,17 @@ export function CriteriaChipGroup({
             key={criterion.id}
             type="button"
             className={`${styles.criterionButton} ${
+              criterion.shortLabel ? styles.criterionWithShortLabel : ""
+            } ${
               isActive ? styles.criterionActive : ""
             }`}
             aria-pressed={isActive}
             onClick={() => onToggle(criterion.id)}
           >
-            <span>{criterion.label}</span>
+            <span className={styles.chipText}>{criterion.label}</span>
+            {criterion.shortLabel ? (
+              <span className={styles.chipTextShort}>{criterion.shortLabel}</span>
+            ) : null}
             {criterion.planned ? (
               <span className={styles.criterionPlanned}>예정</span>
             ) : null}
