@@ -1,0 +1,73 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.inner {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+}
+
+.brandMark {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: var(--color-green-dark);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-left: auto;
+  color: var(--color-body);
+  font-size: 14px;
+}
+
+.menu a:hover {
+  color: var(--color-green);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+}
+
+.startButton {
+  height: 40px;
+  border-radius: 999px;
+  padding: 0 16px;
+  display: inline-flex;
+  align-items: center;
+  background: var(--color-text);
+  color: #fff;
+  font-size: 14px;
+  box-shadow: 0 10px 24px rgba(23, 26, 23, 0.14);
+}
+
+@media (max-width: 760px) {
+  .menu {
+    display: none;
+  }
+}

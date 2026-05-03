@@ -1,0 +1,16 @@
+.page {
+  padding: 72px 0 96px;
+}
+
+.title {
+  font-size: clamp(32px, 4vw, 44px);
+  letter-spacing: -0.05em;
+}
+
+.description {
+  max-width: 720px;
+  margin-top: 14px;
+  color: var(--color-body);
+  font-size: 17px;
+  line-height: 1.7;
+}
